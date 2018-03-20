@@ -1,0 +1,163 @@
+﻿<Controls:MetroWindow x:Name="Window1" x:Class="KQSJZD.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="富维安道拓IMS-声光提醒" Icon="/KQSJZD;component/Image/黄色报警.png" Height="719" Width="1024" ResizeMode="NoResize" Closing="Window1_Closing">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ListBoxItem">
+                <Style.Resources>
+                    <!--ListBox 选中一项时背景颜色-->
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                    <!--选中项失去焦点后的颜色-->
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                </Style.Resources>
+            </Style>
+            <DataTemplate x:Key="listBoxTemplate">
+                <StackPanel Margin="22,3,22,3" Width="240" Height="220">
+                    <StackPanel.Resources>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Resources>
+                                <!--ListBox 选中一项时背景颜色-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                                <!--选中项失去焦点后的颜色-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                            </Style.Resources>
+                        </Style>
+                    </StackPanel.Resources>
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="../Image/back.png"/>
+                    </StackPanel.Background>
+                    <DockPanel>
+                        <Image  Source="/KQSJZD;component/Image/zsj.jpg" Margin="5,0,15,10"/>
+                        <TextBlock FontWeight="Bold" Text="设备编号：" DockPanel.Dock="Left" Margin="5,0,20,5"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding id}" Foreground="Black" FontWeight="Bold"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold" Text="设备名称：" DockPanel.Dock="Left" Margin="5,0,5,4"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding machineName}" Foreground="Black"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold" Text="产品名称：" DockPanel.Dock="Left" Margin="5,0,5,4"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding productName}" Foreground="Black"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold" Text="警报时间：" DockPanel.Dock="Left" Margin="5,0,5,4"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding alarmTime,StringFormat='yyyy-MM-dd'}" Foreground="Black"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold" Text="警报时长：" DockPanel.Dock="Left" Margin="5,0,5,4"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding alarmDuration}" Foreground="Black"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold" Text="状       态：" DockPanel.Dock="Left" Margin="5,0,5,4"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding status}" Foreground="Black"/>
+                        <!--Visibility="{Binding ishow}"-->
+                        <Button Content="  处  理  " Visibility="{Binding isshow}" Width="80" Name="btn1" Click="btn1_Click">
+                            <Button.Background>
+                                <ImageBrush ImageSource="../Image/圆角矩形-1-拷贝-6.png" Stretch="UniformToFill" TileMode="None" />
+                            </Button.Background>
+                        </Button>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold" Text="警报记录：" DockPanel.Dock="Left" Margin="5,0,5,0"/>
+                        <TextBlock Text="        "/>
+                        <Button Content="  详  情  " Width="80" Name="btn2" Click="btn2_Click">
+                            <Button.Background>
+                                <ImageBrush ImageSource="../Image/圆角矩形-1-拷贝-6.png" Stretch="UniformToFill" TileMode="None" />
+                            </Button.Background>
+                        </Button>
+                    </DockPanel>
+                </StackPanel>
+            </DataTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!-- Accent and AppTheme setting -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="1024" Margin="-1,345,-5,345">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="277*"/>
+            <ColumnDefinition Width="342*"/>
+            <ColumnDefinition Width="198*"/>
+            <ColumnDefinition Width="134*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="120*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="tBlockTime" FontSize="15" Text="1111111111111" Foreground="White" Margin="0,-224,-17,224" Grid.Column="4" HorizontalAlignment="Right" Height="30" Width="114"/>
+        <!--<Image  Source="/KQSJZD;component/Image/currntitle.png" Margin="-41,-28,743,38"/>-->
+        <!--<DataGrid Name="dataGrid1" ItemsSource="{Binding}" HorizontalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" VerticalAlignment="Top" Width="1030" Height="254" Margin="-35,4,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="序号" Width="51" Binding="{Binding serialNum}"/>
+                <DataGridTextColumn Header="机台" Width="171" Binding="{Binding mac}"/>
+                <DataGridTextColumn Header="产品名称" Width="151" Binding="{Binding productName}"/>
+                <DataGridTextColumn Header="报警内容" Width="311" Binding="{Binding alarmContent}"/>
+                <DataGridTextColumn Header="开始时间" Width="136" Binding="{Binding startTime}"/>
+                <DataGridTextColumn Header="持续时间" Width="71" Binding="{Binding duration}"/>
+                <DataGridTemplateColumn Header="操作" Width="117">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btn1" Content="  处  理  " Background="#FC9A22" Foreground="White" FontSize="10" Width="100" Click="btn1_Click">
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>-->
+
+        <!--<Image  Source="/KQSJZD;component/Image/history_title.png" Margin="-16,228,756,325" Grid.Row="1"/>-->
+        <!--<DataGrid Name="dataGrid2" ItemsSource="{Binding}" HorizontalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" Grid.Row="1" VerticalAlignment="Top" Width="1030" Height="357" Margin="-35,266,0,-35" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="序号" Width="50" Binding="{Binding serialNum}"/>
+                <DataGridTextColumn Header="机台" Width="170" Binding="{Binding mac}"/>
+                <DataGridTextColumn Header="产品名称" Width="150" Binding="{Binding productName}"/>
+                <DataGridTextColumn Header="报警内容" Width="310" Binding="{Binding alarmContent}"/>
+                <DataGridTextColumn Header="开始时间" Width="129" Binding="{Binding startTime}"/>
+                <DataGridTextColumn Header="消除时间" Width="129" Binding="{Binding eliminateTime}"/>
+                <DataGridTextColumn Header="持续时间" Width="70" Binding="{Binding duration}"/>
+            </DataGrid.Columns>
+        </DataGrid>-->
+        <ListBox x:Name="listBox1" Margin="46,-340,24,-331" ItemsSource="{Binding Tables[0]}" Grid.RowSpan="2" ItemTemplate="{StaticResource listBoxTemplate}" Grid.ColumnSpan="5">
+            <ListBox.Template>
+                <ControlTemplate TargetType="ListBox">
+                    <WrapPanel Width="1000" Orientation="Horizontal" IsItemsHost="True"/>
+                </ControlTemplate>
+            </ListBox.Template>
+        </ListBox>
+        <Label Name="all" Grid.Column="4" HorizontalAlignment="Left" Margin="77,-336,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="../Image/一体机1.png"/>
+            </Label.Background>
+        </Label>
+        <Label Name="work" Content="Label" Grid.Column="4" HorizontalAlignment="Left" Margin="77,-308,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="../Image/一体机2.png"/>
+            </Label.Background>
+        </Label>
+        <Label Name="alarm" Content="Label" Grid.Column="4" HorizontalAlignment="Left" Margin="78,-282,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="../Image/一体机3.png"/>
+            </Label.Background>
+        </Label>
+        <Label Content="所有" Grid.Column="4" HorizontalAlignment="Left" Margin="37,-335,0,0" VerticalAlignment="Top"/>
+        <Label Content="正常" Grid.Column="4" HorizontalAlignment="Left" Margin="36,-308,-2,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="警报" Grid.Column="4" HorizontalAlignment="Left" Margin="36,-281,-2,0" VerticalAlignment="Top" Width="100"/>
+        <Label Name="time" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="114,-371,0,0" VerticalAlignment="Top" Width="170" Grid.ColumnSpan="2"/>
+    </Grid>
+
+</Controls:MetroWindow>

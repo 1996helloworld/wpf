@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+
+  　　<AppName>声光系统</AppName>
+
+  　　<AppVersion>1.0.1.11</AppVersion>
+
+  　　<RequiredMinVersion>1.0.0.8</RequiredMinVersion>
+
+  　　<Desc>标题新增时间</Desc>
+
+</Config>

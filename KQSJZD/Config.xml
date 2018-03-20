@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config id="config">
+  <AppName>Test</AppName>
+
+  　　<AppVersion>1.0.0.1</AppVersion>
+
+  　　<RequiredMinVersion>1.0.0.9</RequiredMinVersion>
+
+  　　<Desc>shengji</Desc>
+</Config>
